@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PhotoUploadPage from "./PhotoUploadPage";
+import Photo from "./Photo"
 import PostcardiumApi from './api';
 
 
@@ -14,13 +15,13 @@ import PostcardiumApi from './api';
 function PostcardCreationPage() {
   console.log("PostcardCreationPage");
 
-  const [uploadedPhotoUrl, setUploadedPhotoUrl] = useState("");
+  const [uploadedPhotoData, setUploadedPhotoData] = useState();
 
   async function uploadPhoto(formData) {
     console.log("PostcardCreationPage, uploadPhoto, formData=", formData);
     try {
-      const photoUrl = await PostcardiumApi.uploadPhoto(formData);
-      setUploadedPhotoUrl(photoUrl);
+      const photoData = await PostcardiumApi.uploadPhoto(formData);
+      setUploadedPhotoData(photoData);
     } catch (err) {
       console.error("ERROR!", err);
     }
@@ -31,10 +32,16 @@ function PostcardCreationPage() {
 
       POSTCARD CREATION PAGE
 
-      {uploadedPhotoUrl
+      {uploadedPhotoData
 
         ?
-        <div> UPLOADED</div>
+        <div>
+          <div>
+
+          UPLOADED!!!
+          </div>
+          <Photo imageUrl={uploadedPhotoData.image_url} />
+          </div>
         :
 
         <PhotoUploadPage uploadPhoto={uploadPhoto} />

@@ -6,9 +6,14 @@
  *
  * renders:
  */
-function Photo() {
+function Photo({imageUrl}) {
+  console.log("Photo Component, IMAGE URL", imageUrl);
 
-    return <p>Photo</p>
+    return (
+      <div className="Photo" >
+        <img src={imageUrl}/>
+      </div>
+    )
   }
 
   export default Photo
