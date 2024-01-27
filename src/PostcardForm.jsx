@@ -1,3 +1,10 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import PostcardiumApi from "./api";
+
+
+
 /** PostcardForm
  *
  * props: postcard
@@ -6,9 +13,59 @@
  *
  * renders:
  */
-function PostcardForm() {
+function PostcardForm({ photoId }) {
 
-    return <p>POSTCARD FORM</p>
+  const [formData, setFormData] = useState({
+    title: "",
+    message: ""
+  });
+
+  const navigate = useNavigate()
+
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData(data => ({ ...data, [name]: value }));
   }
 
-  export default PostcardForm
+  async function handleSubmit(){
+    const data = formData;
+    data.photoId = photoId;
+    try {
+      const id = await PostcardiumApi.createPostcard(data);
+      navigate(`/postcards/${id}`);
+    } catch(err){
+      console.error("ERROR!", err);
+    }
+  }
+
+
+  return (
+    <div className="PostcardForm">
+      <p>POSTCARD FORM</p>
+
+      <div>
+
+        <label htmlFor="title">Title</label>
+        <input
+          name="title"
+          value={formData.title}
+          onChange={handleChange} />
+      </div>
+
+      <div>
+
+        <label htmlFor="message">Message</label>
+        <input
+          name="message"
+          value={formData.message}
+          onChange={handleChange} />
+      </div>
+
+      <button className="btn btn-primary" onClick={handleSubmit}>
+        Make Postcard
+      </button>
+    </div>
+  );
+}
+
+export default PostcardForm;

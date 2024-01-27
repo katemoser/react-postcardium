@@ -1,8 +1,14 @@
-# React + Vite
+# Postcardium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Inspired by PostSecret, a true guilty pleasure of my highschool days, I started working on this project to practice using cloud storage and the GoogleMaps API in my applications. The idea is you can upload a photo, write a postcard-length message, and "post" it anonymously.
 
-Currently, two official plugins are available:
+### Currently Working on:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Fleshing out the rest of the application
+- Styling
+
+### Ideas for the future:
+
+- pull location from the files
+- add search functionality
+- find a way to make sure the photos are of scenary/landscape and not people.
