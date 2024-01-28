@@ -32,20 +32,32 @@ function PostcardCreationPage() {
 
 
   return (
-    <div className="PhotoCreationPage">
-
-      POSTCARD CREATION PAGE
+    <div className="PhotoCreationPage mt-3">
 
       {uploadedPhotoData
 
         ?
         <div>
-          <div>
+          <div className="row">
+            <div className="col-8">
+              <div className="row">
+                <Photo imageUrl={uploadedPhotoData.image_url} />
+              </div>
 
-            UPLOADED!!!
+              <div className="row">
+                <div className="card">
+                  <p>message will go here!</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-4">
+              <div className="px-auto">
+                <PostcardForm photoId={uploadedPhotoData.id} />
+              </div>
+
+            </div>
           </div>
-          <Photo imageUrl={uploadedPhotoData.image_url} />
-          <PostcardForm photoId={uploadedPhotoData.id} />
         </div>
         :
 

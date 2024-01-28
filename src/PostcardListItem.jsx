@@ -19,8 +19,7 @@ function PostcardListItem({ id, photoUrl, title, message, }) {
   return (
     <div
       className="PostcardListItem img-thumbnail card"
-      onClick={handleClick}
-      height="500">
+      onClick={handleClick}>
       {
         isRightsideUp
           ?

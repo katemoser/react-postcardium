@@ -25,12 +25,17 @@ function PhotoUploadForm({uploadPhoto, selectPhoto}) {
     <div className="PhotoUploadForm" >
         <label htmlFor="photo"> Choose a photo!</label>
         <input
+          className="btn btn-primary"
           type="file"
           id="photo"
           name="photo"
           onChange={handleChange} />
 
-          <button onClick={handleSubmit}>Submit photo selection</button>
+          <button
+            className="btn btn-outline-primary mt-5"
+            onClick={handleSubmit} >
+            Submit photo selection
+          </button>
     </div>
   );
   // <p>PHOTO UPLOAD FORM</p>

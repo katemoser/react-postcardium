@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="NavBar navbar navbar-expand">
+    <nav className="NavBar navbar navbar-expand mb-3">
       <div className="container-fluid">
         <NavLink to="/" className="navbar-brand"> Postcardium </NavLink>
 
