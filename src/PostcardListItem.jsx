@@ -1,3 +1,6 @@
+import { useState } from "react";
+import "./PostcardListItem.css"
+
 /** Postcard
  *
  * props: postcard
@@ -6,18 +9,36 @@
  *
  * renders:
  */
-function PostcardListItem({id, photoUrl, title, message,}) {
+function PostcardListItem({ id, photoUrl, title, message, }) {
 
-    return (
-      <div>
-        <p>POSTCARD {id}</p>
-        <img src={photoUrl} />
-        <div> {title}</div>
-        <div> {message}</div>
+  const [isRightsideUp, setIsRightsideUp] = useState(true);
 
-
-      </div>
-    )
+  function handleClick() {
+    setIsRightsideUp(curr => !curr);
   }
+  return (
+    <div className="PostcardListItem img-thumbnail card" onClick={handleClick}>
+      {
+        isRightsideUp
+          ?
+          <img
+            className="PostcardListItem-photo img-fluid card border-primary"
+            src={photoUrl} />
+          :
 
-  export default PostcardListItem
+          <div className="PostcardListItem-message card border-primary mb-3" >
+            <div className="card-header">Postcard id: {id}</div>
+            <div className="card-body">
+              <h4 className="card-title">{title}</h4>
+              <p className="card-text">{message}</p>
+            </div>
+          </div>
+
+      }
+
+    </div>
+  );
+}
+
+export default PostcardListItem;
+

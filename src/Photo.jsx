@@ -13,7 +13,7 @@ function Photo({imageUrl=DEFAULT_IMAGE}) {
 
     return (
       <div className="Photo" >
-        <img src={imageUrl}/>
+        <img className="img-fluid"src={imageUrl}/>
       </div>
     )
   }

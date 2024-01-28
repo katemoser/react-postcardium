@@ -18,33 +18,48 @@ function PostcardDetailPage() {
 
 
   const { id } = useParams();
-  console.debug("detail page. data=", postcardData, "id=", id)
+  console.debug("detail page. data=", postcardData, "id=", id);
 
   useEffect(function fetchPostcard() {
     async function getPostcard() {
-      try{
+      try {
         const postcard = await PostcardiumApi.getPostcard(id);
         setPostcardData(postcard);
-      } catch(err){
+      } catch (err) {
         console.error("ERROR!", err);
       }
     }
 
-    getPostcard()
-  }, [id])
+    getPostcard();
+  }, [id]);
 
-  if(!postcardData) return <div>LOADING</div>
+  if (!postcardData) return <div>LOADING</div>;
 
   return (
     <div className="PostcardDetailPage" >
-      <p>POSTCARD DETAIL PAGE</p>
 
-      <Photo imageUrl={postcardData.photo_url} />
+      <div className="row">
+        <div className="col col-md-2"></div>
+        <div className="col-12 col-md-8 ">
+          <div className="card">
 
-      <div> Title: {postcardData.title}</div>
-      <div> Message: {postcardData.message}</div>
+          <Photo imageUrl={postcardData.photo_url} />
+          </div>
+
+          <div className="col col-md-2"></div>
+
+          <div className="PostcardListItem-message card border-primary mb-3" >
+            <div className="card-header">Postcard id: {id}</div>
+            <div className="card-body">
+              <h4 className="card-title">{postcardData.title}</h4>
+              <p className="card-text">{postcardData.message}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default PostcardDetailPage;
