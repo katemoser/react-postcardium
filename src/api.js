@@ -23,7 +23,9 @@ class PostcardiumApi {
     const response = await fetch(`${BASE_API_URL}/postcards`, {
       method: "GET"
     });
-    return await response.json();
+    const {postcards} = await response.json();
+    console.log("************* postcards in get", postcards);
+    return postcards;
   }
 
   static async getPostcard(id) {
@@ -33,18 +35,18 @@ class PostcardiumApi {
       method: "GET"
     });
     const {postcard} = await postcardResponse.json();
-    console.log("postcardData before", postcard);
+    // console.log("postcardData before", postcard);
 
-    const photoResponse = await fetch(
-      `${BASE_API_URL}/photos/${postcard.photo_id}`,
-      {
-        method: "GET"
-      });
+    // const photoResponse = await fetch(
+    //   `${BASE_API_URL}/photos/${postcard.photo_id}`,
+    //   {
+    //     method: "GET"
+    //   });
 
-      const {photo} = await photoResponse.json();
-      console.log("photodata", photo)
+    //   const {photo} = await photoResponse.json();
+    //   console.log("photodata", photo)
 
-      postcard.photoUrl = photo.image_url;
+    //   postcard.photoUrl = photo.image_url;
     console.log("postcardData after", postcard);
 
 

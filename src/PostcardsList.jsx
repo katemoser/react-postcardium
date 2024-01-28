@@ -1,3 +1,4 @@
+import PostcardListItem from "./PostcardListItem"
 /** PostcardsList
  *
  * props: postcards
@@ -6,9 +7,20 @@
  *
  * renders: PostcardsList -> Postcard
  */
-function PostcardsList() {
+function PostcardsList({postcards}) {
+  console.debug("postcardslist, postcards=", postcards )
 
-    return <p>POSTCARDS LIST</p>
+    return (
+      postcards.map(p => (
+        <PostcardListItem
+          key={p.id}
+          id={p.id}
+          title={p.title}
+          message={p.message}
+          photoUrl={p.photo_url} />
+      )
+      )
+    )
   }
 
   export default PostcardsList

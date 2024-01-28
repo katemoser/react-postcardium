@@ -39,7 +39,7 @@ function PostcardDetailPage() {
     <div className="PostcardDetailPage" >
       <p>POSTCARD DETAIL PAGE</p>
 
-      <Photo imageUrl={postcardData.photoUrl} />
+      <Photo imageUrl={postcardData.photo_url} />
 
       <div> Title: {postcardData.title}</div>
       <div> Message: {postcardData.message}</div>

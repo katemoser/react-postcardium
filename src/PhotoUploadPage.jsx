@@ -38,9 +38,14 @@ function PhotoUploadPage({uploadPhoto}) {
     setIsLoading(true)
     const formData = new FormData();
     formData.append("photo", selectedFile);
+    console.log("in photoupload page, formdata=", formData.entries());
+    for(let key of formData.entries()){
+      console.log(key[0] + ', ' + key[1]);
+    }
     uploadPhoto(formData);
   }
 
+  // if(isLoading) return <div>LOADING!</div>
     return (
       <div className="PhotoUploadPage">
         PHOTO UPLOAD PAGE
