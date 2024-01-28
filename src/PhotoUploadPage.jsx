@@ -45,7 +45,7 @@ function PhotoUploadPage({uploadPhoto}) {
     uploadPhoto(formData);
   }
 
-  // if(isLoading) return <div>LOADING!</div>
+  if(isLoading) return <div>LOADING!</div>
     return (
       <div className="PhotoUploadPage">
         PHOTO UPLOAD PAGE

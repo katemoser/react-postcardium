@@ -32,7 +32,7 @@ function PostcardsListPage() {
     if (postcards.isLoading === true) return <div>LOADING!</div>;
 
     return (
-        <div className="PostcardsListPage" >
+        <div className="PostcardsListPage mt-3" >
             <PostcardsList postcards={postcards.data} />
         </div>
     );
