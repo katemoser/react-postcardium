@@ -6,7 +6,7 @@ const DEFAULT_IMAGE = "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPie
  *
  * state: None
  *
- *          PhotoUploadPage
+ *          PhotoPreview
  * renders: PostcardDetailPage -> Photo
  */
 function Photo({imageUrl=DEFAULT_IMAGE}) {
@@ -14,7 +14,7 @@ function Photo({imageUrl=DEFAULT_IMAGE}) {
 
     return (
       <div className="Photo" >
-        <img className="img-fluid"src={imageUrl}/>
+        <img className="img-fluid" src={imageUrl}/>
       </div>
     )
   }

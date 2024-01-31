@@ -51,7 +51,7 @@ function PostcardDetailsForm({ location, saveLocation, onSubmit }) {
                             className="btn btn-outline-primary mt-5"
                             onClick={handleSubmit} >
                             Submit photo selection
-                        </button>;
+                        </button>
                     </div>
                 </>
             }

@@ -16,15 +16,20 @@ class PostcardiumApi {
   }
 
   /** upload photo to s3 */
-  static async uploadPhoto(formData) {
-    console.log("upload photo in postcardiumApi. formData=", formData);
+  static async uploadPhoto({file_name, city, state, country}) {
+    const body = JSON.stringify({file_name, city, state, country});
+    console.log("upload photo in postcardiumApi. body=", body);
+
     const response = await fetch(`${BASE_API_URL}/photos`, {
       method: "POST",
-      body: formData
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: body
     });
     const json = await response.json();
     console.log("after upload, json=", json);
-    return json;
+    return json.photo;
 
   }
 
@@ -67,7 +72,7 @@ class PostcardiumApi {
     const json = await response.json();
 
     console.log("got back from the api:", json);
-    return json;
+    return json.postcard;
 
   }
 }

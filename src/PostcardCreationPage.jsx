@@ -1,62 +1,138 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import PhotoUploadPage from "./PhotoUploadPage";
 import PostcardiumApi from './api';
+import PostcardPreview from "./PostcardPreview";
+import PhotoUploadForm from "./PhotoUploadForm";
+import PostcardDetailsForm from "./PostcardDetailsForm";
 
 
 /** PostcardCreationPage
  *
- * props:
+ * props: None
  *
  * state:
+ *    localFileName -- string name of where file is temporarily stored on server
+ *    selectedFile -- file object after selected
+ *    location -- object containing photo location information
+ *    previewUrl -- string url of temporary url for image preview
  *
- * renders:
+ * renders: RoutesList -> PostcardCreationPage -> PhotoPreview
+ *                                             -> PostcardDetailsForm
+ *                                             -> PhotoUploadForm
  */
 function PostcardCreationPage() {
 
-  const [fileName, setFilename] = useState();
-  console.debug(
-    "PostcardCreationPage, fileName =", fileName);
+  // rename to localFileName
+  const [localFileName, setLocalFileName] = useState();
+  const [selectedFile, setSelectedFile] = useState();
+  const [location, setLocation] = useState();
+  const [previewUrl, setPreviewUrl] = useState();
+
+  console.debug("PostcardCreationPage, fileName =", localFileName);
+  console.debug("selectedFile =", selectedFile);
+  console.debug("previewUrl =", previewUrl);
+  console.debug("location =", location);
 
   const navigate = useNavigate();
 
-  /** uploads photo and creates postcard */
-  async function uploadPhoto(formData) {
-    console.log("PostcardCreationPage, uploadPhoto, formData=", formData);
+  useEffect(function displayPhotoPreview() {
+    console.log("useEffect running, displayPhotoPreview");
+
+    /** send file to backend to get location data and local file name*/
+    async function getLocationAndPreview(file) {
+
+      const formData = new FormData();
+      formData.append("photo", file);
+      const locationData = await PostcardiumApi.getLocation(formData);
+      console.log("location data:", locationData);
+
+      if (locationData.country) {
+        setLocation({
+          "city": locationData.city || "",
+          "state": locationData.state || "",
+          "country": locationData.country || ""
+        });
+      }
+      else {
+        setLocation(undefined);
+      }
+
+      const previewUrl = URL.createObjectURL(selectedFile);
+      setLocalFileName(locationData.file_name);
+      setPreviewUrl(previewUrl);
+
+    }
+
+    if (!selectedFile) {
+      return;
+    }
+
+    getLocationAndPreview(selectedFile);
+  }, [selectedFile]);
+
+  // TODO: figure out loading!
+
+  /**
+   * uploads photo and creates postcard
+   *
+   * takes object like {city, state, country, message}, redirects to detail page
+   * on success
+   *
+   * */
+  async function uploadPhotoAndCreatePostcard(postcardData) {
+    console.log("PostcardCreationPage, uploadPhoto, formData=", postcardData);
 
     try {
-      formData.append("file_name", fileName);
-      const photoData = await PostcardiumApi.uploadPhoto(formData);
+      postcardData["file_name"] = localFileName;
+      const photoData = await PostcardiumApi.uploadPhoto(postcardData);
 
-      const postcardResponse = await PostcardiumApi.createPostcard(
+      const postcardData = await PostcardiumApi.createPostcard(
         {
           photoId: photoData.id,
-          message: formData.get("message"),
+          message: postcardData.message,
           title: "this is the title!"
         }
       );
 
-      navigate(`/postcards/${postcardResponse.postcard.id}`);
+      navigate(`/postcards/${postcardData.id}`);
     } catch (err) {
       console.error("ERROR!", err);
     }
 
   }
 
-  function updateFileName(filename) {
-    console.log("UPDATE FILENAME IS RUNNING:", fileName);
-    setFilename(filename);
+  /** sets location in state */
+  function saveLocation({ city, state, country }) {
+    setLocation({ city, state, country });
+    // console.log("SAVELOCATION", locationData);
+  }
+
+  /** stores file selected in state, to trigger use effect */
+  function selectPhoto(photo) {
+    console.log("You have selected this photo:", photo);
+    setSelectedFile(photo);
   }
 
 
   return (
     <div className="PhotoCreationPage mt-3">
+      <div className='row'>
+        <div className='col-sm-8 col-12 card'>
 
-      <PhotoUploadPage createPostcard={uploadPhoto} onLocalSave={updateFileName} />
+          <PostcardPreview imageUrl={previewUrl} />
+        </div>
+        <div className='col-sm-4 col-12 mt-5'>
 
-      {/* } */}
+          <PhotoUploadForm selectPhoto={selectPhoto} />
 
+          {selectedFile && <PostcardDetailsForm
+            location={location}
+            saveLocation={saveLocation}
+            onSubmit={uploadPhotoAndCreatePostcard} />
+          }
+        </div>
+      </div>
     </div>);
 
 }
