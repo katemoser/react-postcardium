@@ -3,6 +3,17 @@
 const BASE_API_URL = "http://127.0.0.1:5000/api";
 class PostcardiumApi {
 
+  /** get location data from photo */
+  static async getLocation(formData){
+    console.log("upload photo in postcardiumApi. formData=", formData);
+    const response = await fetch(`${BASE_API_URL}/photos/exif`, {
+      method: "POST",
+      body: formData
+    });
+    const json = await response.json();
+    console.log("after upload, json=", json);
+    return json;
+  }
 
   /** upload photo to s3 */
   static async uploadPhoto(formData) {

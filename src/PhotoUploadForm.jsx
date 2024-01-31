@@ -8,18 +8,18 @@ import { useState } from "react";
  *
  * renders:
  */
-function PhotoUploadForm({uploadPhoto, selectPhoto}) {
+function PhotoUploadForm({selectPhoto}) {
 
 
-  function handleChange(evt) {
+  function handlePhotoChange(evt) {
     const photo = evt.target.files[0]
     selectPhoto(photo);
   }
 
-  function handleSubmit(evt){
-    evt.preventDefault();
-    uploadPhoto();
-  }
+  // function handlePhotoSubmit(evt){
+  //   evt.preventDefault();
+  //   uploadPhoto();
+  // }
 
   return (
     <div className="PhotoUploadForm" >
@@ -29,13 +29,13 @@ function PhotoUploadForm({uploadPhoto, selectPhoto}) {
           type="file"
           id="photo"
           name="photo"
-          onChange={handleChange} />
+          onChange={handlePhotoChange} />
 
-          <button
+          {/* <button
             className="btn btn-outline-primary mt-5"
-            onClick={handleSubmit} >
+            onClick={handlePhotoSubmit} >
             Submit photo selection
-          </button>
+          </button> */}
     </div>
   );
   // <p>PHOTO UPLOAD FORM</p>

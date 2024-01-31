@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PhotoUploadPage from "./PhotoUploadPage";
-import Photo from "./Photo";
-import PostcardForm from './PostcardForm';
+// import Photo from "./Photo";
+// import PostcardForm from './PostcardForm';
 import PostcardiumApi from './api';
+import { useNavigate } from "react-router-dom";
 
 
 /** PostcardCreationPage
@@ -16,25 +17,45 @@ import PostcardiumApi from './api';
 function PostcardCreationPage() {
   console.log("PostcardCreationPage");
 
-  const [uploadedPhotoData, setUploadedPhotoData] = useState();
+  const [fileName, setFilename] = useState();
 
-  console.debug("creation page. data=", uploadedPhotoData);
+  const navigate = useNavigate();
+
+  console.debug("creation page. data=", fileName);
+
   async function uploadPhoto(formData) {
     console.log("PostcardCreationPage, uploadPhoto, formData=", formData);
     try {
+      formData.append("file_name", fileName);
       const photoData = await PostcardiumApi.uploadPhoto(formData);
-      setUploadedPhotoData(photoData);
+      // console.log("RESPONSE FROM API AFTER UPLOAD", photoData)
+
+      const postcardResponse = await PostcardiumApi.createPostcard(
+        {
+          photoId: photoData.id,
+          message: formData.get("message"),
+          title: "this is the title!"
+        }
+      );
+      // console.log("AFTER POSTCARD CREATIONL:",  postcardResponse)
+      navigate(`/postcards/${postcardResponse}`);
+      // setUploadedPhotoData(photoData);
     } catch (err) {
       console.error("ERROR!", err);
     }
 
   }
 
+  function updateFileName(filename) {
+    console.log("UPDATE FILENAME IS RUNNING:", fileName);
+    setFilename(filename);
+  }
+
 
   return (
     <div className="PhotoCreationPage mt-3">
 
-      {uploadedPhotoData
+      {/* {uploadedPhotoData
 
         ?
         <div>
@@ -59,11 +80,11 @@ function PostcardCreationPage() {
             </div>
           </div>
         </div>
-        :
+        : */}
 
-        <PhotoUploadPage uploadPhoto={uploadPhoto} />
+      <PhotoUploadPage createPostcard={uploadPhoto} onLocalSave={updateFileName} />
 
-      }
+      {/* } */}
 
     </div>);
 

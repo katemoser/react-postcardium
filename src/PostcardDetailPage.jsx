@@ -53,6 +53,7 @@ function PostcardDetailPage() {
             <div className="card-body">
               <h4 className="card-title">{postcardData.title}</h4>
               <p className="card-text">{postcardData.message}</p>
+              <p >Location: {postcardData.location}</p>
             </div>
           </div>
 
