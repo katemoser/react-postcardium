@@ -55,10 +55,10 @@ class PostcardiumApi {
     return postcard;
   }
 
-  static async createPostcard({ photoId, title, message }) {
-    console.debug("createPostcard. id:", photoId, "title:", title, "message:", message);
+  static async createPostcard({ photoId, message }) {
+    console.debug("createPostcard. id:", photoId, "message:", message);
 
-    const body = JSON.stringify({ photoId, title, message });
+    const body = JSON.stringify({ photoId, message });
 
 
     const response = await fetch(`${BASE_API_URL}/postcards`, {

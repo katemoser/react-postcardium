@@ -51,7 +51,6 @@ function PostcardDetailPage() {
           <div className="PostcardListItem-message card border-primary mb-3" >
             <div className="card-header">Postcard id: {id}</div>
             <div className="card-body">
-              <h4 className="card-title">{postcardData.title}</h4>
               <p className="card-text">{postcardData.message}</p>
               <p >Location: {postcardData.location}</p>
             </div>

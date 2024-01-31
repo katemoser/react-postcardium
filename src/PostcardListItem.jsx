@@ -3,13 +3,13 @@ import "./PostcardListItem.css";
 
 /** Postcard
  *
- * props: id, photoUrl, title, message
+ * props: id, photoUrl, message
  *
  * state: isRightsideUp : boolean
  *
  * renders: PostcardsList
  */
-function PostcardListItem({ id, photoUrl, title, message, }) {
+function PostcardListItem({ id, photoUrl, message, }) {
 
   const [isRightsideUp, setIsRightsideUp] = useState(true);
 
@@ -31,7 +31,6 @@ function PostcardListItem({ id, photoUrl, title, message, }) {
           <div className="PostcardListItem-message card border-primary mb-3" >
             <div className="card-header">Postcard id: {id}</div>
             <div className="card-body">
-              <h4 className="card-title">{title}</h4>
               <p className="card-text">{message}</p>
             </div>
           </div>

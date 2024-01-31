@@ -80,18 +80,17 @@ function PostcardCreationPage() {
    * on success
    *
    * */
-  async function uploadPhotoAndCreatePostcard(postcardData) {
-    console.log("PostcardCreationPage, uploadPhoto, formData=", postcardData);
+  async function uploadPhotoAndCreatePostcard(postcardDetails) {
+    console.log("PostcardCreationPage, uploadPhoto, formData=", postcardDetails);
 
     try {
-      postcardData["file_name"] = localFileName;
-      const photoData = await PostcardiumApi.uploadPhoto(postcardData);
+      postcardDetails.file_name = localFileName;
+      const photoData = await PostcardiumApi.uploadPhoto(postcardDetails);
 
       const postcardData = await PostcardiumApi.createPostcard(
         {
           photoId: photoData.id,
-          message: postcardData.message,
-          title: "this is the title!"
+          message: postcardDetails.message,
         }
       );
 

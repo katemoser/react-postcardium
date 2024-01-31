@@ -20,7 +20,6 @@ function PostcardsList({ postcards }) {
 
           <PostcardListItem
             id={p.id}
-            title={p.title}
             message={p.message}
             photoUrl={p.photo_url} />
         </div>

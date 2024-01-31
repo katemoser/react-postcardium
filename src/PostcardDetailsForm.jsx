@@ -21,6 +21,7 @@ function PostcardDetailsForm({ location, saveLocation, onSubmit }) {
             country: location.country,
             message: formData.message
         };
+        console.log("in handleSubmit, postcardDetails=", postcardDetails)
         onSubmit(postcardDetails);
     }
 
