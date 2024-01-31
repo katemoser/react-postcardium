@@ -4,13 +4,16 @@ import PostcardsListPage from "./PostcardsListPage";
 import PostcardDetailPage from "./PostcardDetailPage";
 import PostcardCreationPage from "./PostcardCreationPage";
 
-/** Photo
+/** RoutesList for Postcards App
  *
- * props: postcard
+ * props: None
  *
- * state:
+ * state: None
  *
- * renders:
+ * renders: App -> RoutesList -> Homepage
+ *                            -> PostcardsListPage
+ *                            -> PostcardDetailPage
+ *                            -> PostcardCreationPage
  */
 function RoutesList() {
 

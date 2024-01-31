@@ -1,11 +1,12 @@
 import PostcardListItem from "./PostcardListItem";
+
 /** PostcardsList
  *
- * props: postcards
+ * props: postcards like [{id, message, photo_url, location, photo_id, created_at}, ...]
  *
- * state:
+ * state: None
  *
- * renders: PostcardsList -> Postcard
+ * renders: PostcardsListPage -> PostcardsList -> PostcardListItem
  */
 function PostcardsList({ postcards }) {
   console.debug("postcardslist, postcards=", postcards);

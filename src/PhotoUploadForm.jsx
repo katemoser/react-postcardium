@@ -1,10 +1,8 @@
-import { useState } from "react";
-
 /** PhotoUploadForm
  *
- * props:
+ * props: selectPhoto - gets selected photo and passes to parent
  *
- * state:
+ * state: None
  *
  * renders:
  */

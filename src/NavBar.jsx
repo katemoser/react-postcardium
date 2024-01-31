@@ -1,6 +1,15 @@
 import { NavLink } from "react-router-dom";
-// import "./NavBar.css";
 
+/**
+ * Nav Bar Component for postcards app
+ *
+ * props: None
+ *
+ * State: None
+ *
+ * Renders: App -> NavBar
+ *
+ */
 function NavBar() {
   return (
     <nav className="NavBar navbar navbar-expand mb-3">

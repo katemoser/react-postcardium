@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import PhotoPreview from './PhotoPreview';
+import Photo from './Photo';
 import PhotoUploadForm from './PhotoUploadForm';
 import PostcardiumApi from './api';
 import LocationForm from './LocationForm';
@@ -8,7 +8,7 @@ import PostcardCreationForm from './PostcardCreationForm';
 
 /** PhotoUploadPage
  *
- * props:
+ * props: createPostcard -- function from
  *
  * state: photoSource -- url for photo after uploaded
  * renders:
@@ -88,7 +88,7 @@ function PhotoUploadPage({ createPostcard, onLocalSave }) {
       <div className='row'>
         <div className='col-sm-8 col-12 card'>
 
-          <PhotoPreview photoSource={preview} />
+          <Photo imageUrl={preview} />
         </div>
         <div className='col-sm-4 col-12 mt-5'>
 

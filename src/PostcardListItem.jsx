@@ -1,13 +1,13 @@
 import { useState } from "react";
-import "./PostcardListItem.css"
+import "./PostcardListItem.css";
 
 /** Postcard
  *
- * props: postcard
+ * props: id, photoUrl, title, message
  *
- * state:
+ * state: isRightsideUp : boolean
  *
- * renders:
+ * renders: PostcardsList
  */
 function PostcardListItem({ id, photoUrl, title, message, }) {
 
@@ -35,9 +35,7 @@ function PostcardListItem({ id, photoUrl, title, message, }) {
               <p className="card-text">{message}</p>
             </div>
           </div>
-
       }
-
     </div>
   );
 }

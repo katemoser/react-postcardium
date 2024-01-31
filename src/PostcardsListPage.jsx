@@ -2,9 +2,16 @@ import { useEffect, useState } from "react";
 import PostcardsList from "./PostcardsList";
 import PostcardiumApi from "./api";
 
-/**
+/** "Brain" component for PostCards list, makes request to API
  *
+ * Props: None
  *
+ * State: Postcards {
+ *      isLoading: boolean,
+ *      data: [{id, message, photo_url, location, photo_id, create_at}, ...]
+ * }
+ *
+ * Renders: RoutesList -> PostcardsListPage -> PostcardsList
  *
  */
 function PostcardsListPage() {
@@ -12,6 +19,8 @@ function PostcardsListPage() {
         data: [],
         isLoading: true
     });
+
+    console.debug("PostcardsListPage, postcards:", postcards);
 
     useEffect(function fetchPostcards() {
         async function getPostcards() {

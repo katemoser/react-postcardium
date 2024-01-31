@@ -39,6 +39,7 @@ class PostcardiumApi {
     return postcards;
   }
 
+  /** Gets data about postcard */
   static async getPostcard(id) {
     console.debug("API getPostcard. id =", id);
 
@@ -46,21 +47,6 @@ class PostcardiumApi {
       method: "GET"
     });
     const {postcard} = await postcardResponse.json();
-    // console.log("postcardData before", postcard);
-
-    // const photoResponse = await fetch(
-    //   `${BASE_API_URL}/photos/${postcard.photo_id}`,
-    //   {
-    //     method: "GET"
-    //   });
-
-    //   const {photo} = await photoResponse.json();
-    //   console.log("photodata", photo)
-
-    //   postcard.photoUrl = photo.image_url;
-    console.log("postcardData after", postcard);
-
-
     return postcard;
   }
 
@@ -81,7 +67,7 @@ class PostcardiumApi {
     const json = await response.json();
 
     console.log("got back from the api:", json);
-    return json.postcard.id;
+    return json;
 
   }
 }

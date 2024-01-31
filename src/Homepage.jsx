@@ -1,5 +1,12 @@
 
-/** Homepage renders welcome message */
+/** Homepage renders welcome message and links to other parts of app
+ *
+ * props: none
+ *
+ * state: None
+ *
+ * Renders: RoutesList -> Homepage
+ */
 function Homepage() {
 
     return (

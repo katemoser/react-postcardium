@@ -2,15 +2,14 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostcardiumApi from "./api";
 import Photo from "./Photo";
-import PostcardForm from "./PostcardForm";
 
 /** PostcardDetailPage
  *
- * props:
+ * props: None
  *
- * state:
+ * state: postcardData like {id, message, photo_url, location, photo_id, created_at}
  *
- * renders:
+ * renders: RoutesList ->  PostcardDetailPage -> Photo
  */
 function PostcardDetailPage() {
 
@@ -21,6 +20,7 @@ function PostcardDetailPage() {
   console.debug("detail page. data=", postcardData, "id=", id);
 
   useEffect(function fetchPostcard() {
+    /** Make API request for info on postcard, saves in state */
     async function getPostcard() {
       try {
         const postcard = await PostcardiumApi.getPostcard(id);
