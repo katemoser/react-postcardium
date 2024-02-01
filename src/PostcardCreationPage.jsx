@@ -102,8 +102,8 @@ function PostcardCreationPage() {
   }
 
   /** sets location in state */
-  function saveLocation({ city, state, country }) {
-    setLocation({ city, state, country });
+  function saveLocation({ city, state, country, latitude, longitude }) {
+    setLocation({ city, state, country, latitude, longitude });
     // console.log("SAVELOCATION", locationData);
   }
 

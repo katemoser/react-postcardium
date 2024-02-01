@@ -19,6 +19,8 @@ function PostcardDetailsForm({ location, saveLocation, onSubmit }) {
             city: location.city,
             state: location.state,
             country: location.country,
+            latitude: location.latitude,
+            longitude: location.longitude,
             message: formData.message
         };
         console.log("in handleSubmit, postcardDetails=", postcardDetails)

@@ -53,6 +53,7 @@ function PostcardDetailPage() {
             <div className="card-body">
               <p className="card-text">{postcardData.message}</p>
               <p >Location: {postcardData.location}</p>
+              <p >Coords: {postcardData.coords[0]}, {postcardData.coords[1]}</p>
             </div>
           </div>
 
