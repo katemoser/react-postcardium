@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostcardiumApi from "./api";
 import Photo from "./Photo";
+import PostcardMap from "./PostcardMap";
 
 /** PostcardDetailPage
  *
@@ -39,26 +40,36 @@ function PostcardDetailPage() {
     <div className="PostcardDetailPage" >
 
       <div className="row">
-        <div className="col col-md-2"></div>
-        <div className="col-12 col-md-8 ">
-          <div className="card">
+        <div className="col col-md-6" >
 
-          <Photo imageUrl={postcardData.photo_url} />
-          </div>
+          <div className="PostcardDetailPage-postcard row">
+            {/* <div className="col col-md-2"></div> */}
+            <div className="col-12">
+              <div className="card">
+                <Photo imageUrl={postcardData.photo_url} />
+              </div>
 
-          <div className="col col-md-2"></div>
+              {/* <div className="col col-md-2"></div> */}
 
-          <div className="PostcardListItem-message card border-primary mb-3" >
-            <div className="card-header">Postcard id: {id}</div>
-            <div className="card-body">
-              <p className="card-text">{postcardData.message}</p>
-              <p >Location: {postcardData.location}</p>
-              <p >Coords: {postcardData.coords[0]}, {postcardData.coords[1]}</p>
+              <div className="PostcardDetailPage-message card border-primary mb-3" >
+                <div className="card-header">Postcard id: {id}</div>
+                <div className="card-body">
+                  <p className="card-text">{postcardData.message}</p>
+                  <p >Location: {postcardData.location}</p>
+                  <p >Coords: {postcardData.coords[0]}, {postcardData.coords[1]}</p>
+                </div>
+              </div>
+
             </div>
           </div>
+        </div>
+        <div className="PostcardDetailPage-map col col-md-6" >
+
+          <PostcardMap lat={+postcardData.coords[0]} lng={+postcardData.coords[1]} />
 
         </div>
       </div>
+
     </div>
   );
 }
