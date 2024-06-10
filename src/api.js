@@ -1,6 +1,7 @@
 /** API for interfacing with Postcardium API */
 
-const BASE_API_URL = "http://127.0.0.1:5000/api";
+const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
+
 class PostcardiumApi {
 
   /** get location data from photo */
@@ -8,7 +9,8 @@ class PostcardiumApi {
     console.log("upload photo in postcardiumApi. formData=", formData);
     const response = await fetch(`${BASE_API_URL}/photos/exif`, {
       method: "POST",
-      body: formData
+      body: formData,
+      mode: "cors"
     });
     const json = await response.json();
     console.log("after upload, json=", json);

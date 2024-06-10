@@ -14,3 +14,12 @@ Inspired by PostSecret, a true guilty pleasure of my highschool days, I started 
 - find a way to make sure the photos are of scenary/landscape and not people.
 - For photos without gps exif data: https://docs.mapbox.com/mapbox-search-js/tutorials/add-address-autofill-with-react/
 - Have this form only pop up if there's no exif data, with a little blurb about exif data
+
+### Dev Setup:
+
+- Make a `.env` file with
+
+```bash
+VITE_GOOGLE_MAPS_API_KEY=
+VITE_BASE_API_URL="http://127.0.0.1:5001/api"
+```
